@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="estate_property_action" model="ir.actions.act_window">
+    <field name="name">Estate Properties</field>
+    <field name="res_model">estate.property</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<record id="estate_property_tree" model="ir.ui.view">
+        <field name="name">estate.property.tree</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties">
+                <field name="name"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="state"/>
+                <field name="date_availability"/>
+            </tree> 
+        </field>
+</record>
+
+<record id="estate_property_form" model="ir.ui.view">
+        <field name="name">estate.property.form</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="Properties">
+                <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="postcode"/>
+                            <field name="date_availability"/>
+                        </group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <field name="description"/>
+                                    <field name="bedrooms"/>
+                                    <field name="living_area"/>
+                                    <field name="facades"/>
+                                    <field name="garage"/>
+                                    <field name="garden"/>
+                                    <field name="garden_area"/>
+                                    <field name="garden_orientation"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form> 
+        </field>
+</record>
+
+    <menuitem
+        id="estate_base_menu"
+        name="Real Estate"
+        web_icon="static/image/icon.png"/>
+    <menuitem
+        id="estate_property"
+        name="Properties"
+        parent="estate_base_menu"
+        sequence="1"/>    
+    <menuitem
+        id="estate_property_submenu"
+        name="Properties"
+        parent="estate_property"
+        action="estate_property_action"
+        sequence="1"/>
+    <menuitem
+        id="estate_property_submenu2"
+        name="Properties 2"
+        parent="estate_property"
+        action="estate_property_action"
+        sequence="2"/>              
+</odoo>
